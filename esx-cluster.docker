@@ -1,0 +1,29 @@
+FROM centos
+RUN yum -y update && yum -y install \
+	cpan \
+	gcc \
+	make \
+	which \
+	e2fsprogs \
+	openssl-devel \
+	libuuid \
+	libuuid-devel \
+	perl-Test-Simple \
+	perl-LWP-Protocol-https \
+	perl-XML-LibXML \
+	perl-Crypt-SSLeay \
+	perl-Socket6 \
+	cpanminus \
+	expect \
+	&& yum clean all
+
+RUN cpanm Fatal \
+	MIME::Base64 \
+	LWP \
+	Net::HTTP \
+	JSON::PP \
+	Socket6
+	
+ADD ["./layout.tar.gz", "/"]
+RUN /root/vmware-vsphere-cli-distrib/install.sh
+ENTRYPOINT ["/root/start.sh"]

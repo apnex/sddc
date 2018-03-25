@@ -1,0 +1,27 @@
+{
+	"server": "vcenter.lab",
+	"username": "administrator@vsphere.local",
+	"password": "VMware1!",
+	"clusters": [
+		{
+			"name": "Compute-01",
+			"ClusterConfigSpec": {
+				"drsConfig": {
+					"enabled": "1",
+					"vmotionRate": "3"
+				},
+				"dasConfig": {
+					"enabled": "1",
+					"failoverLevel": "3",
+					"admissionControlEnabled": "1",
+					"option": [
+						{
+							"key": "das.ignoreRedundantNetWarning",
+							"value": "true"
+						}
+					]
+				}
+			}
+		}
+	]
+}

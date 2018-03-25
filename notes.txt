@@ -1,0 +1,16 @@
+yum -y install cpan gcc openssl-devel libuuid libuuid-devel
+yum install perl-Test-Simple
+yum install perl-LWP-Protocol-https
+yum install perl-XML-LibXML perl-Crypt-SSLeay perl-Socket6
+
+cpan -i Fatal
+cpan -i LWP
+cpan -i MIME::Base64
+cpan -i Net::HTTP
+
+./vmware-install.sh
+
+./hostinfo.pl --username administrator@vsphere.local --password VMware1! --url https://vcenter.lab/sdk/vimService
+
+## embed a dns client into container to avoid host / lab dependencies
+## separate Perl SDK Shim from client JSON entry model
